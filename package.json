@@ -1,0 +1,22 @@
+{
+  "name": "bookreview",
+  "version": "1.0.0",
+  "description": "A system for giving reviews of the books one has read for easy memory",
+  "repository": {
+    "type": "git",
+    "url": "www.github.com/14lucas/books_Review"
+  },
+  "license": "ISC",
+  "author": "Lucas Musoke",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^2.3.0",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "pg": "^8.22.0"
+  }
+}

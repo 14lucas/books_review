@@ -1,0 +1,18 @@
+/* 1. Use a more sensible box-sizing model */
+* {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin and padding on everything */
+body, h1, h2, h3, h4, p, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Set a readable default font and line spacing */
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  background-color: #f5f5f5;
+  margin: 200px 200px;
+}
