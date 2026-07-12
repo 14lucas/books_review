@@ -20,27 +20,41 @@
         </div>
         <div class="body-container">
             <div class="headings">
-                <h2 id="bookTitle"></h2>
+                <h2 id="bookTitle">Book Title</h2>
+                <img src="" alt="Book Cover" id="bookCover">
                 <div id="bookInfo">
-                    <span id="author">Lucas Musoke</span>
-                    <form>
+                    
+                    <form action="">
+
+                        <label for="author">Author:</label>
+                        <input type="text" name="author"  value="Lucas" readonly>
+
+                        <label for="publicationYear">Publication Year:</label>
+                        <input type="text" name="publicationYear"  value="2000" readonly>
+
                         <label for="rating">Rating:</label>
-                        <select name="rating" id="rating">
-                            <option value="5">5</option>
-                            <option value="4">4</option>
-                            <option value="3">3</option>
-                            <option value="2">2</option>
-                            <option value="1">1</option>
-                        </select>
+
+                        <% for (let i =1 ; i <= 5; i++) { %>
+                            <input type="radio" name="rating" value="<%= i %>"> 
+                            <%}%>
+
+                        <input type="radio" value="" >
                     </form>
                 </div>
-                <p id="bookReview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                <div class="">
+
+                    <h2>Review</h2>
+
+                    <p id="bookReview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Donec augue erat, porta et lobortis egestas, luctus ut dolor. 
                     Nullam gravida urna eu metus faucibus tempor. Phasellus sed est velit. 
                     Vivamus sed orci enim. In dapibus ipsum lacinia, gravida magna et, 
                     auctor enim. Mauris ut turpis non ligula dignissim rhoncus sed non neque. 
                     Donec felis ligula, dictum eu velit et, rutrum mattis metus. Etiam ipsum lectus, 
                     semper at egestas nec, tristique sed leo. Donec eget semper neque. </p>
+
+                </div>review
+                
             </div>
         </div>
     </section>

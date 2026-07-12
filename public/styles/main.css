@@ -16,3 +16,9 @@ body {
   background-color: #f5f5f5;
   margin: 200px 200px;
 }
+
+input #bookInfo {
+  display: flex;
+  flex-direction: column;
+}
+
