@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/main.css">
-    <title>Books Reviews</title>
-</head>
+
+<%- include('partials/header'); -%>
+
 <body>
 
     <section>
@@ -43,11 +38,11 @@
 
                     <p id="bookReview"> <%= bookInfo.review %> </p>
 
-                </div>review
+                </div>
                 
             </div>
         </div>
     </section>
+
+<%- include('partials/footer.ejs'); -%>
     
-</body>
-</html>
