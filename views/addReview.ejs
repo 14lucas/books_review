@@ -1,0 +1,54 @@
+<%- include('partials/header'); -%>
+
+<body>
+
+<section>
+        <div class="intro-container">
+            <div class="headings">
+                <h1>Welcome to Books Reviews</h1>
+                </p>
+            </div>
+            <form action="/search" method="GET" >
+                <input type="text" placeholder="search......" name="search" id="search" autoComplete="off" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <div class="body-container">
+            <div class="headings">
+                <h2 id="bookTitle"><%= bookInfo.title %></h2>
+                <img src="" alt="Book Cover" id="bookCover">
+                <div id="bookInfo">
+                    
+                    <form action="">
+
+                        <label for="author">Author:</label>
+                        <input type="text" name="author"  value="<%= bookInfo.Author %>" readonly>
+
+                        <label for="readDate">Read date:</label>
+                        <input type="text" name="readDate"  value="<%= bookInfo.dateOfReview %>" readonly>
+
+                        <label for="rating">Rating:</label>
+                        <input type="text" name="rating"  value="<%= bookInfo.rating %>">
+
+                        <h3>Review:</h3>
+                        <textarea type="text" name="review" ><%= bookInfo.review %></textarea>
+                        <input type="submit" value="Add review" />
+                   
+                    </form>
+                </div>
+
+
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+
+
+
+
+<%- include('partials/footer') -%>

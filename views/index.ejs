@@ -9,8 +9,9 @@
                 <h1>Welcome to Books Reviews</h1>
                 </p>
             </div>
-            <form>
+            <form action="/search" method="GET" >
                 <input type="text" placeholder="search......" name="search" id="search" autoComplete="off" />
+                <input type="submit" value="Search" />
             </form>
         </div>
         <div class="body-container">
@@ -22,21 +23,21 @@
                     <form action="">
 
                         <label for="author">Author:</label>
-                        <input type="text" name="author"  value="<%= bookInfo.Author %>">
+                        <input type="text" name="author"  value="<%= bookInfo.Author %>" readonly>
 
-                        <label for="publicationYear">Publication Year:</label>
-                        <input type="text" name="publicationYear"  value="<%= bookInfo.dateOfReview %>">
+                        <label for="readDate">Read date:</label>
+                        <input type="text" name="readDate"  value="<%= bookInfo.dateOfReview %>" readonly>
 
                         <label for="rating">Rating:</label>
-                        <input type="text" name="rating" value="<%= bookInfo.rating %>">
+                        <input type="text" name="rating"  value="<%= bookInfo.rating %>">
+
+                        <h3>Review:</h3>
+                        <textarea type="text" name="review" ><%= bookInfo.review %></textarea>
+                        <input type="submit" value="Add review" />
                    
                     </form>
                 </div>
-                <div class="">
 
-                    <h2>Review</h2>
-
-                    <p id="bookReview"> <%= bookInfo.review %> </p>
 
                 </div>
                 
