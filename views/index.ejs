@@ -14,34 +14,59 @@
                 <input type="submit" value="Search" />
             </form>
         </div>
-        <div class="body-container">
-            <div class="headings">
-                <h2 id="bookTitle"><%= bookInfo.title %></h2>
+    </section>
+
+    <section>
+
+        <!-- all book is displayed in this container  -->
+        <div class="allbooks-container">    
+
+
+            <% bookInfo.forEach((book) => { %>
+
+            <!-- This is the container for each book -->
+           <div class="eachbook-container">
+              <div class="headings">
+                <h2 id="bookTitle"><%= book.title %></h2> 
                 <img src="" alt="Book Cover" id="bookCover">
                 <div id="bookInfo">
-                    
-                    <form action="">
+
+                      <form action="">
 
                         <label for="author">Author:</label>
-                        <input type="text" name="author"  value="<%= bookInfo.Author %>" readonly>
+                        <input type="text" name="author"  value="<%= book.author %>" readonly>
 
                         <label for="readDate">Read date:</label>
-                        <input type="text" name="readDate"  value="<%= bookInfo.dateOfReview %>" readonly>
+                        <input type="text" name="readDate"  value="<%= book.dateofreview %>" readonly>
 
                         <label for="rating">Rating:</label>
-                        <input type="text" name="rating"  value="<%= bookInfo.rating %>">
+                        <input type="text" name="rating"  value="<%= book.rating %>">
 
                         <h3>Review:</h3>
-                        <textarea type="text" name="review" ><%= bookInfo.review %></textarea>
-                        <input type="submit" value="Add review" />
-                   
-                    </form>
+                        <textarea type="text" name="review" ><%= book.review %></textarea>
+                        <input type="submit" name="update" value="Update review" />
+                        <input type="submit" name="delete" value="Delete review" />
+
+                    </form>  
+                      
+
                 </div>
 
 
                 </div>
                 
             </div>
+
+
+
+            <% }) %>
+
+
+
+        
+        </div>
+    </section>
+
         </div>
     </section>
 

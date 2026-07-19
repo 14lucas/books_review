@@ -28,35 +28,80 @@ db.connect()
 
 
 
-const bookInfo = {
-    id: 1,
-    cover: "image",
-    title: "The Great Gatsby",
-    Author: "F. Scott Fitzgerald",
-    dateOfReview: "2023-06-01",
-    review: "A classic novel that explores themes of wealth, love, and the American Dream. Fitzgerald's writing is beautiful and the characters are complex and memorable.",
-    rating: 5 
-}
+// const bookInfo = [{
+//     id: 1,
+//     cover: "image",
+//     title: "The Great Gatsby",
+//     author: "F. Scott Fitzgerald",
+//     dateofreview: "2023-06-01",
+//     review: "A classic novel that explores themes of wealth, love, and the American Dream. Fitzgerald's writing is beautiful and the characters are complex and memorable.",
+//     rating: 5 
+// },
+
+// {
+//     id: 2,
+//     cover: "image",
+//     title: "The 5AM Club",
+//     author: "Robin Sharma",
+//     dateofreview: "2023-06-01",
+//     review: "A classic novel that explores themes of wealth, love, and the American Dream. Fitzgerald's writing is beautiful and the characters are complex and memorable.",
+//     rating: 5 
+// },
+
+// ]
 
 app.get('/', async (req, res) => {
 
-    addingDataToDatabase();
+    //addingDataToDatabase();
+    const bookInfo = await getDataFromDatabase();
 
     res.render("index.ejs", { bookInfo: bookInfo })
+
 })
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-})
 
-async function addingDataToDatabase() {
+
+function addingDataToDatabase() {
      
-    try{
-         const result = await db.query("INSERT INTO books(id, cover, title, Author, dateofreview, review, rating) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id ", [bookInfo.id, bookInfo.cover, bookInfo.title, bookInfo.Author, bookInfo.dateOfReview, bookInfo.review, bookInfo.rating]);
-        console.log(id)
+   try
+    {
+
+        bookInfo.forEach( async (book) => { 
+ 
+                const result = await db.query("INSERT INTO books(id, cover, title, Author, dateofreview, review, rating) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING * ", [book.id, book.cover, book.title, book.author, book.dateofreview, book.review, book.rating]);
+                console.log(result.rows[0].id) 
+                
+                
+
+         });
+       
     }
     catch(err){
         console.log(err)
     }
 
 }
+
+async function getDataFromDatabase() {
+    
+    try {
+        const result = await db.query("SELECT * FROM books") 
+
+        const bookInfoFromDatabase = result.rows;
+
+        console.log(bookInfoFromDatabase);
+
+        return bookInfoFromDatabase;
+
+    }
+    catch (err){
+        console.log('Error fetching data from the database', err)
+    }
+}
+
+
+
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);   
+})
