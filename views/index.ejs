@@ -2,6 +2,7 @@
 <%- include('partials/header'); -%>
 
 <body>
+     <h1 id="output"></h1>
 
     <section>
         <div class="intro-container">
@@ -31,7 +32,7 @@
                 <img src="" alt="Book Cover" id="bookCover">
                 <div id="bookInfo">
 
-                      <form>
+                      <form class="review-form">
 
                         <label for="author">Author:</label>
                         <input type="text" name="author"  value="<%= book.author %>" readonly>
@@ -47,7 +48,9 @@
                         <button type="submit" name="update" value="Update" >Update review</button>
                         <button type="submit" name="delete"  value="Delete">Delete review</button> 
 
-                    </form>  
+                    </form> 
+                    
+                   
                       
 
                 </div>

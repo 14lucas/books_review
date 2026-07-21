@@ -8,6 +8,8 @@ const port = 4000;
 
 // middleware
 
+app.use(express.json());
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static('public'));
@@ -63,7 +65,8 @@ app.get('/', async (req, res) => {
 app.post('/book/:id', async (req, res) => {
 
     const bookId = req.params.id;
-    const deleteBtn = req.body.delete;
+    const { author, readDate, rating, review, delete: deleteBtn} = req.body;
+
 
     if(deleteBtn){
         try {
@@ -72,14 +75,24 @@ app.post('/book/:id', async (req, res) => {
             console.log(`Book with ID ${bookId} has been deleted from the database.`);
 
             //redirecting to the home page after deletion.
-            res.redirect('/');
+            res.status(200).json({ success: true, message: 'Item deleted successfully!'});
 
         }
         catch(err){
             console.log('Error deleting book from the database', err)
-            res.redirect('/');
+            res.status(500).json({success: false, message: 'Error deleting review'})
         }
 
+    }
+    else{
+        try{
+            await db.query("UPDATE books SET rating = $1, review = $2 WHERE id = $3", [rating, review, bookId]);
+            res.status(200).json({success: true, message: "Review updated successfully!"})
+        }
+        catch(err){
+            console.log('Error updating book review', err);
+            res.status(500).json({success: false, message: 'Error updating review'})
+        }
     }
 
 })
