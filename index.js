@@ -60,27 +60,50 @@ app.get('/', async (req, res) => {
 })
 
 
+app.post('/book/:id', async (req, res) => {
 
-function addingDataToDatabase() {
+    const bookId = req.params.id;
+    const deleteBtn = req.body.delete;
+
+    if(deleteBtn){
+        try {
+
+            await db.query("DELETE FROM books WHERE id = $1 RETURNING * ", [bookId] )
+            console.log(`Book with ID ${bookId} has been deleted from the database.`);
+
+            //redirecting to the home page after deletion.
+            res.redirect('/');
+
+        }
+        catch(err){
+            console.log('Error deleting book from the database', err)
+            res.redirect('/');
+        }
+
+    }
+
+})
+
+
+
+// function addingDataToDatabase() {
      
-   try
-    {
+//    try
+//     {
 
-        bookInfo.forEach( async (book) => { 
+//         bookInfo.forEach( async (book) => { 
  
-                const result = await db.query("INSERT INTO books(id, cover, title, Author, dateofreview, review, rating) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING * ", [book.id, book.cover, book.title, book.author, book.dateofreview, book.review, book.rating]);
-                console.log(result.rows[0].id) 
-                
-                
+//                 const result = await db.query("INSERT INTO books(id, cover, title, Author, dateofreview, review, rating) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING * ", [book.id, book.cover, book.title, book.author, book.dateofreview, book.review, book.rating]);
+//                 console.log(result.rows[0].id)        
 
-         });
+//          });
        
-    }
-    catch(err){
-        console.log(err)
-    }
+//     }
+//     catch(err){
+//         console.log(err) 
+//     }
 
-}
+// }
 
 async function getDataFromDatabase() {
     
@@ -89,7 +112,7 @@ async function getDataFromDatabase() {
 
         const bookInfoFromDatabase = result.rows;
 
-        console.log(bookInfoFromDatabase);
+        //console.log(bookInfoFromDatabase);
 
         return bookInfoFromDatabase;
 

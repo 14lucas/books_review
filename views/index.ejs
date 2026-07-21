@@ -25,13 +25,13 @@
             <% bookInfo.forEach((book) => { %>
 
             <!-- This is the container for each book -->
-           <div class="eachbook-container">
+           <div class="eachbook-container" data-book-id="<%= book.id%>">
               <div class="headings">
                 <h2 id="bookTitle"><%= book.title %></h2> 
                 <img src="" alt="Book Cover" id="bookCover">
                 <div id="bookInfo">
 
-                      <form action="">
+                      <form>
 
                         <label for="author">Author:</label>
                         <input type="text" name="author"  value="<%= book.author %>" readonly>
@@ -44,8 +44,8 @@
 
                         <h3>Review:</h3>
                         <textarea type="text" name="review" ><%= book.review %></textarea>
-                        <input type="submit" name="update" value="Update review" />
-                        <input type="submit" name="delete" value="Delete review" />
+                        <button type="submit" name="update" value="Update" >Update review</button>
+                        <button type="submit" name="delete"  value="Delete">Delete review</button> 
 
                     </form>  
                       
@@ -69,6 +69,8 @@
 
         </div>
     </section>
+
+
 
 <%- include('partials/footer.ejs'); -%>
     
