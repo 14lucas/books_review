@@ -2,18 +2,33 @@
 <%- include('partials/header'); -%>
 
 <body>
-     <h1 id="output"></h1>
+     <!-- <h1 id="output"></h1> -->
 
     <section>
         <div class="intro-container">
-            <div class="headings">
+            <div class="main-heading">
                 <h1>Welcome to Books Reviews</h1>
-                </p>
             </div>
+        </div>
+        <div class="navigation-top-bar">
+
+            <nav> 
+                <ul>
+                    <li><a href="">My books</a></li>
+                    <li><a href="">Add book review</a></li>
+                </ul>
+            </nav>   
+
+            
             <form action="/search" method="GET" >
-                <input type="text" placeholder="search......" name="search" id="search" autoComplete="off" />
-                <input type="submit" value="Search" />
+                    <input type="text" placeholder="search......" name="search" id="search" autoComplete="off" />
+                    <button type="submit" name="search" value="Search">Search</button>
             </form>
+
+
+
+        </div>
+            
         </div>
     </section>
 
@@ -27,7 +42,8 @@
 
             <!-- This is the container for each book -->
            <div class="eachbook-container" data-book-id="<%= book.id%>">
-              <div class="headings">
+
+              <div class="book-headings">
                 <h2 id="bookTitle"><%= book.title %></h2> 
                 <img src="" alt="Book Cover" id="bookCover">
                 <div id="bookInfo">
@@ -49,10 +65,6 @@
                         <button type="submit" name="delete"  value="Delete">Delete review</button> 
 
                     </form> 
-                    
-                   
-                      
-
                 </div>
 
 
@@ -60,14 +72,41 @@
                 
             </div>
 
-
-
             <% }) %>
 
 
 
-        
         </div>
+
+        <div class="card">
+                <form>
+                    <div class="card-header">
+
+                        <h2>Edit review</h2>
+
+                    </div>
+                    <div class="card-body">
+                       
+                        <label for="author">Author:</label>
+                        <input type="text" name="author" >
+
+                        <label for="readDate">Read date:</label>
+                        <input type="text" name="readDate">
+
+                        <label for="rating">Rating:</label>
+                        <input type="text" name="rating"  >
+
+                        <h3>Review:</h3>
+                        <textarea type="text" name="review" ></textarea>
+
+                    </div>
+                    <div class="card-footer">
+                        <button name="save" type="submit">save</button>
+                        <button name="cancel" type="submit">cancel</button>
+                    </div>
+                </form>
+                
+            </div>
     </section>
 
         </div>
